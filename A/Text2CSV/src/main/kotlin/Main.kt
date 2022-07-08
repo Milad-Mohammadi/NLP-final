@@ -1,11 +1,11 @@
+import java.io.BufferedReader
 import java.io.File
+import java.io.FileReader
 import java.io.IOException
-import java.nio.file.Files
-import java.nio.file.Paths
 
 
 fun main(args: Array<String>) {
-    val text = readFileAsString("sample.txt")
+    val text = readFileAsString("Hamshahri-Corpus.txt")
     val txtList = getPreparedTextParts(text)
     val csvList = getCSVList(txtList)
     val csvFile = File("./output.csv")
@@ -30,13 +30,15 @@ fun getCSVList(txtList: List<String>): List<List<String>> {
     return csvList
 }
 fun readFileAsString(path: String): String {
-    var result: String? = ""
-    try {
-        result = Files.readString(Paths.get(path))
-    } catch (e: IOException) {
-        e.printStackTrace()
+    var fileContent = ""
+
+    BufferedReader(FileReader(path)).use { br ->
+        val line = br.readLine()
+        while (line != null) {
+            fileContent = line
+        }
     }
-    return result ?: ""
+    return fileContent
 }
 
 @Throws(IOException::class)
