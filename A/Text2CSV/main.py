@@ -1,4 +1,41 @@
-with open("Hamshahri-Sample.txt", "r") as dataset:
-    txt = dataset.read()
+import csv
+import re
 
-txtParts = txt.split('\n\n')
+
+def read_file():
+    with open("Hamshahri-Sample.txt", "r") as dataText:
+        return dataText.read()
+
+
+def split_on_empty_lines(s):
+    blank_line_regex = '\n{2,}'
+    return re.split(blank_line_regex, s.strip())
+
+
+def split_each_element_to_parts(text_parts):
+    array = []
+    for part in text_parts:
+        part_array = part.split("\n")
+        did = re.sub('.DID|\t', '', part_array[0])
+        date = re.sub('.Date|\t', '', part_array[1])
+        cat = re.sub('.Cat|\t', '', part_array[2])
+        text = '\n'.join([str(line) for line in part_array[3:]])
+        array.append([did, date, cat, text])
+    return array
+
+
+def write_csv(file_name, data):
+    csv_data = [["DID", "Date", "Cat", "Text"]]
+    for element in data:
+        csv_data.append(element)
+    with open(file_name, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerows(csv_data)
+
+
+dataset = read_file()
+txtParts = split_on_empty_lines(dataset)
+print(txtParts)
+element_parts = split_each_element_to_parts(txtParts)
+print(element_parts)
+write_csv("sample.csv", element_parts)
