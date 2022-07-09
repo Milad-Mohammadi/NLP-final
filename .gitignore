@@ -5,6 +5,7 @@ out/
 .idea
 *.iml
 Hamshahri-Corpus.txt
+*.csv
 
 ### Eclipse ###
 .apt_generated
