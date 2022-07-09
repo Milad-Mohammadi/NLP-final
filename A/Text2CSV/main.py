@@ -3,12 +3,12 @@ import re
 
 
 def read_file():
-    with open("Hamshahri-Sample.txt", "r") as dataText:
+    with open("Hamshahri-Corpus.txt", "r") as dataText:
         return dataText.read()
 
 
 def split_on_empty_lines(s):
-    blank_line_regex = '\n{2,}'
+    blank_line_regex = '\n{2,}\.'
     return re.split(blank_line_regex, s.strip())
 
 
@@ -33,9 +33,9 @@ def write_csv(file_name, data):
         writer.writerows(csv_data)
 
 
+print("Converting...")
 dataset = read_file()
 txtParts = split_on_empty_lines(dataset)
-print(txtParts)
 element_parts = split_each_element_to_parts(txtParts)
-print(element_parts)
-write_csv("sample.csv", element_parts)
+write_csv("hamshahri.csv", element_parts)
+print("Done.")
