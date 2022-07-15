@@ -16,16 +16,14 @@ def split_each_element_to_parts(text_parts):
     array = []
     for part in text_parts:
         part_array = part.split("\n")
-        did = re.sub('.DID|\t', '', part_array[0])
-        date = re.sub('.Date|\t', '', part_array[1])
         cat = re.sub('.Cat|\t', '', part_array[2])
-        text = '\n'.join([str(line) for line in part_array[3:]])
-        array.append([did, date, cat, text])
+        text = ''.join([str(line) for line in part_array[3:]])
+        array.append([cat, text])
     return array
 
 
 def write_csv(file_name, data):
-    csv_data = [["DID", "Date", "Cat", "Text"]]
+    csv_data = [["Cat", "Text"]]
     for element in data:
         csv_data.append(element)
     with open(file_name, 'w', newline='') as file:
