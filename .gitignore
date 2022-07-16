@@ -6,6 +6,9 @@ out/
 *.iml
 Hamshahri-Corpus.txt
 *.csv
+TEP.en-fa.en
+TEP.en-fa.fa
+en-fa.tmx
 
 ### Eclipse ###
 .apt_generated
