@@ -6,7 +6,7 @@ with open("TEP.en-fa.fa", "r") as fa:
 
 merged = []
 for index, en_line in enumerate(english):
-    merged_line = en_line + ' -> ' + farsi[index]
+    merged_line = en_line + farsi[index]
     merged.append(merged_line)
 
 file = open("en_fa.txt", "w")
