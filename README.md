@@ -79,7 +79,7 @@ Sample fa2en dataset:
     - [x] Normalize, clear and append `<start>` and `<end>` tokens to specify the start and end of a sequence.
     Encapsulate the unicode conversion in a function `unicode_to_ascii()` and sequence preprocessing in a function `preprocess_sentence()`.
 3. **Prepare the Dataset**
-  - [x] Create word pairs combining the English sequences and their related French sequences.
+  - [x] Create word pairs combining the English sequences and their related Farsi sequences.
   - [x] Tokenize and pad the sequences so all sentence arrays have the same length.
 4. **Create the Dataset**:
   - [x] Segregate the train and validation datasets.
